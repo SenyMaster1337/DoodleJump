@@ -1,0 +1,17 @@
+{
+    "name": "Services.ReturnToPoolService",
+    "rootNamespace": "",
+    "references": [
+        "GUID:393f5e581b8cde742b522bc5a11b626a",
+        "GUID:6a6712af6aa799748974447cc1427915"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

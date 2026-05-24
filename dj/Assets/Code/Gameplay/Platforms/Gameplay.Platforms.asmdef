@@ -1,0 +1,17 @@
+{
+    "name": "Gameplayer.Platforms",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3139f9afee8c5c5498a22d39a79029e3",
+        "GUID:aa26862475e69c04fb4f2cd0cd34e7f6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

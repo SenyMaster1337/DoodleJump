@@ -1,0 +1,14 @@
+using System;
+using Code.Gameplay.Platforms;
+using UnityEngine;
+
+namespace Code.Services.PlatformSpawner
+{
+    public interface IPlatformSpawnService
+    {
+        void Init();
+        void StartSpawn(float startY);
+        void ReturnToPool(IPlatform platform);
+        event Action<Vector2> PlatformSpawned;
+    }
+}

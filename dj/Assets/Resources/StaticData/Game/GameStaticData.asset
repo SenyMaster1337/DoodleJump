@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820a81b6cb127b047ad5de07e26eca92, type: 3}
+  m_Name: GameStaticData
+  m_EditorClassIdentifier: 
+  SceneKey: Main
+  StartSpawnPosition: {x: 0, y: -9, z: 0}
+  CameraSettingsData:
+    SmoothTimeFollowToPlayer: 0.2
+  PlayerSettingsData:
+    MoveSpeed: 6.5
+    JumpForce: 8.5
+  BulletSettingsData:
+    Speed: 20
+    Lifetime: 0.8
+  PlatformsSpawnData:
+    StartCount: 75
+    StepY: 1
+    ColumnsCount: 3
+    ColumnSpacing: 13
+    ScoreCountToComplication: 25
+    EmptyChance: 0.5
+    PlatformChances:
+    - Type: 1
+      Chance: 0.5
+    - Type: 2
+      Chance: 0.075
+    - Type: 3
+      Chance: 0.12
+    - Type: 4
+      Chance: 0.175
+  PlatformSettingsData:
+    platformHorizontalMovingData:
+      MoveSpeed: 2
+      RangeHorizontalMoving: 4
+    PlatformBreakingData:
+      DealyToRemove: 0.1
+    PlatformSpringingData:
+      SpringForce: 20
+  EnemySpawnData:
+    EnemyOffsetY: 1.5
+    ScoreToStartSpawn: 50
+    EnemyChances:
+    - Type: 1
+      Chance: 0.01
+    - Type: 2
+      Chance: 0.01
+    - Type: 3
+      Chance: 0.01
+  EnemySettingsData:
+    EnemyHorizontalMoverData:
+      Speed: 5
+      RangeHorizontalMoving: 1.5

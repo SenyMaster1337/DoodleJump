@@ -1,0 +1,16 @@
+{
+    "name": "Services.CameraRegisters",
+    "rootNamespace": "",
+    "references": [
+        "GUID:05377e23707e17347a52af47c8c1d12a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

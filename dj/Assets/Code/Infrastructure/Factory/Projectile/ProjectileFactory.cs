@@ -1,0 +1,41 @@
+using Code.Gameplay.Bullets;
+using Code.Infrastructure.AssetManagement;
+using Code.Services.StaticData;
+using UnityEngine;
+using Zenject;
+
+namespace Code.Infrastructure.Factory.Projectile
+{
+    public class ProjectileFactory : IProjectileFactory
+    {
+        private const string MainSceneName = "Main";
+
+        private readonly IAssetProvider _assetProvider;
+        private readonly IStaticDataService _staticDataService;
+
+        private IInstantiator _instantiator;
+
+        public ProjectileFactory(IAssetProvider assetProvider, IStaticDataService staticDataService)
+        {
+            _assetProvider = assetProvider;
+            _staticDataService = staticDataService;
+        }
+
+        public void SetSceneInstantiator(IInstantiator instantiator)
+        {
+            _instantiator = instantiator;
+        }
+
+        public GameObject CreateBullet()
+        {
+            var bulletPrefab = _assetProvider.Load(AssetPath.BulletPath);
+
+            var data = _staticDataService.GetGameStaticData(MainSceneName).BulletSettingsData;
+
+            GameObject bullet = _instantiator.InstantiatePrefab(bulletPrefab);
+            bullet.GetComponent<Bullet>().Init(data.Speed, data.Lifetime);
+
+            return bullet;
+        }
+    }
+}

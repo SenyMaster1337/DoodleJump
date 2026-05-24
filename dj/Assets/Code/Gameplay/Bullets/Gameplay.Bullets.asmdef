@@ -1,0 +1,16 @@
+{
+    "name": "Gameplay.Bullets",
+    "rootNamespace": "",
+    "references": [
+        "GUID:393f5e581b8cde742b522bc5a11b626a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

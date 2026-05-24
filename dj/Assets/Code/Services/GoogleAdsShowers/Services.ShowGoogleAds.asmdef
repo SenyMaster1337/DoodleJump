@@ -1,0 +1,16 @@
+{
+    "name": "Services.ShowGoogleAds",
+    "rootNamespace": "",
+    "references": [
+        "GUID:36a67799e9fc96546b63b5cfcc9574b7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

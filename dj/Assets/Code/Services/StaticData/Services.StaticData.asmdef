@@ -1,0 +1,18 @@
+{
+    "name": "Servuces.StaticData",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3139f9afee8c5c5498a22d39a79029e3",
+        "GUID:f71d9134d01040144814dd76368c055c",
+        "GUID:09c6b4c9eddeeb9409de2f3fee362b0a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

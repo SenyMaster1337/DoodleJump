@@ -1,0 +1,18 @@
+{
+    "name": "Services.LoseServices",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cdeb010aece64b3459b203fbc9a3da5f",
+        "GUID:4d892344e644a2a4f91933599b8cc597",
+        "GUID:36a67799e9fc96546b63b5cfcc9574b7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,18 @@
+{
+    "name": "Services.PlayerDeathServices",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cdeb010aece64b3459b203fbc9a3da5f",
+        "GUID:906e7f94455eee14da56625d9c864c8c",
+        "GUID:90873c135dfc271448581f297b61bf69"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

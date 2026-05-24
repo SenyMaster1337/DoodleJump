@@ -1,0 +1,17 @@
+{
+    "name": "Services.BulletSpawners",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0ae3125aadbdb164db443fa22fd2f327",
+        "GUID:045621dc68522ca41b5ca9321238fc28"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
