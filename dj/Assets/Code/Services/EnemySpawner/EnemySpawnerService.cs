@@ -58,7 +58,7 @@ namespace Code.Services.EnemySpawner
                 _pool[type] = new Queue<IEnemy>();
         }
 
-        public void ReturnToPool(IEnemy enemyDefault)
+        private void ReturnToPool(IEnemy enemyDefault)
         {
             enemyDefault.GameObject.SetActive(false);
             _active.Remove(enemyDefault);
