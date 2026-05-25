@@ -8,11 +8,14 @@ namespace Code.Gameplay.PlayerComponents.PlayerJumpers
         private Rigidbody2D _rigidbody;
         private float _jumpForce;
 
-        private void Awake() 
+        private void Awake()
             => _rigidbody = GetComponent<Rigidbody2D>();
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.contacts.Length == 0)
+                return;
+
             if (collision.contacts[0].normal.y > 0.5f)
             {
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
@@ -20,7 +23,7 @@ namespace Code.Gameplay.PlayerComponents.PlayerJumpers
             }
         }
 
-        public void Init(float jumpForce) 
+        public void Init(float jumpForce)
             => _jumpForce = jumpForce;
     }
 }
