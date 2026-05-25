@@ -70,7 +70,6 @@ namespace Code.Infrastructure.Installers
             Container.Bind<LoadMainMenuState>().AsSingle();
             Container.Bind<LoadProgressState>().AsSingle();
             Container.Bind<LoadLevelState>().AsSingle();
-            Container.Bind<GameLoopState>().AsSingle();
         }
 
         private void BindProviders()

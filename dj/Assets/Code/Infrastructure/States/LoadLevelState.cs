@@ -71,8 +71,6 @@ namespace Code.Infrastructure.States
             InitSpawners(player);
             InitCameraFollower(player, data);
             InitAdsShower();
-
-            _stateMachine.Enter<GameLoopState>();
         }
 
         private void InitAdsShower()
