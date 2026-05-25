@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Services.PlatformSpawner
 {
-    public interface IPlatformSpawnService
+    public interface IPlatformSpawnerService
     {
         void Init();
         void StartSpawn(float startY);

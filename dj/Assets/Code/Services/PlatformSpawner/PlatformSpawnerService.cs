@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace Code.Services.PlatformSpawner
 {
-    public class PlatformSpawnService : IPlatformSpawnService
+    public class PlatformSpawnerService : IPlatformSpawnerService
     {
         private const string MainSceneName = "Main";
         private const float MinRoll = 0f;
@@ -35,7 +35,7 @@ namespace Code.Services.PlatformSpawner
 
         public event Action<Vector2> PlatformSpawned;
 
-        public PlatformSpawnService(IGameFactory gameFactory, IStaticDataService staticDataService,
+        public PlatformSpawnerService(IGameFactory gameFactory, IStaticDataService staticDataService,
             IScoreByHeightProvider scoreByHeightProvider)
         {
             _gameFactory = gameFactory;

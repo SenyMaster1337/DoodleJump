@@ -19,7 +19,7 @@ namespace Code.Services.EnemySpawner
 
         private readonly IGameFactory _gameFactory;
         private readonly IStaticDataService _staticDataService;
-        private readonly IPlatformSpawnService _platformSpawnService;
+        private readonly IPlatformSpawnerService _platformSpawnerService;
         private readonly IScoreByHeightProvider _scoreByHeightProvider;
 
         private readonly Dictionary<EnemyType, Queue<IEnemy>> _pool = new();
@@ -32,17 +32,17 @@ namespace Code.Services.EnemySpawner
         private int _currentCount;
 
         public EnemySpawnerService(IGameFactory gameFactory, IStaticDataService staticDataService,
-            IPlatformSpawnService platformSpawnService, IScoreByHeightProvider scoreByHeightProvider)
+            IPlatformSpawnerService platformSpawnerService, IScoreByHeightProvider scoreByHeightProvider)
         {
             _gameFactory = gameFactory;
             _staticDataService = staticDataService;
-            _platformSpawnService = platformSpawnService;
+            _platformSpawnerService = platformSpawnerService;
             _scoreByHeightProvider = scoreByHeightProvider;
         }
 
         public void Init()
         {
-            _platformSpawnService.PlatformSpawned -= OnEnemySpawned;
+            _platformSpawnerService.PlatformSpawned -= OnEnemySpawned;
             _scoreByHeightProvider.ScoreByHeight.ScoreChanged -= OnActivateSpawnProcess;
             _scoreByHeightProvider.ScoreByHeight.ScoreChanged += OnActivateSpawnProcess;
 
@@ -61,7 +61,7 @@ namespace Code.Services.EnemySpawner
         public void DeactivateService()
         {
             _isActive = false;
-            _platformSpawnService.PlatformSpawned -= OnEnemySpawned;
+            _platformSpawnerService.PlatformSpawned -= OnEnemySpawned;
         }
 
         public void ReturnToPool(IEnemy enemyDefault)
@@ -79,7 +79,7 @@ namespace Code.Services.EnemySpawner
 
             if (_currentCount >= _data.ScoreToStartSpawn)
             {
-                _platformSpawnService.PlatformSpawned += OnEnemySpawned;
+                _platformSpawnerService.PlatformSpawned += OnEnemySpawned;
                 _scoreByHeightProvider.ScoreByHeight.ScoreChanged -= OnActivateSpawnProcess;
                 _isActive = true;
             }

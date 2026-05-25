@@ -51,7 +51,7 @@ namespace Code.Infrastructure.Installers
         {
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
-            Container.Bind<IPlatformSpawnService>().To<PlatformSpawnService>().AsSingle();
+            Container.Bind<IPlatformSpawnerService>().To<PlatformSpawnerService>().AsSingle();
             Container.Bind<IEnemySpawnerService>().To<EnemySpawnerService>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreShowerService>().AsSingle();
             Container.Bind<IBulletSpawnerService>().To<BulletSpawnerService>().AsSingle();

@@ -25,7 +25,7 @@ namespace Code.Infrastructure.States
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
         private readonly ICameraProvider _cameraProvider;
-        private readonly IPlatformSpawnService _platformSpawnService;
+        private readonly IPlatformSpawnerService _platformSpawnerService;
         private readonly IEnemySpawnerService _enemySpawnService;
         private readonly IUIFactory _uiFactory;
         private readonly IPlayerDeathHandlerServices _playerDeathHandlerServices;
@@ -35,7 +35,7 @@ namespace Code.Infrastructure.States
         private readonly IStaticDataService _staticDataService;
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
-            ICameraProvider cameraProvider, IPlatformSpawnService platformSpawnService,
+            ICameraProvider cameraProvider, IPlatformSpawnerService platformSpawnerService,
             IEnemySpawnerService enemySpawnService, IUIFactory uiFactory,
             IPlayerDeathHandlerServices playerDeathHandlerServices, IScoreShowerService scoreShowerService,
             ILoadingCurtainProvider loadingCurtainProvider, IGoogleAdsShowerService adsShowerService,
@@ -45,7 +45,7 @@ namespace Code.Infrastructure.States
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
             _cameraProvider = cameraProvider;
-            _platformSpawnService = platformSpawnService;
+            _platformSpawnerService = platformSpawnerService;
             _enemySpawnService = enemySpawnService;
             _uiFactory = uiFactory;
             _playerDeathHandlerServices = playerDeathHandlerServices;
@@ -101,9 +101,9 @@ namespace Code.Infrastructure.States
 
         private void InitSpawners(GameObject player)
         {
-            _platformSpawnService.Init();
+            _platformSpawnerService.Init();
             _enemySpawnService.Init();
-            _platformSpawnService.StartSpawn(player.transform.position.y);
+            _platformSpawnerService.StartSpawn(player.transform.position.y);
         }
 
         private void InitUIRoot() =>
