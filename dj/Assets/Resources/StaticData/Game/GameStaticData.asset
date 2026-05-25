@@ -43,7 +43,7 @@ MonoBehaviour:
       MoveSpeed: 2
       RangeHorizontalMoving: 4
     PlatformBreakingData:
-      DealyToRemove: 0.1
+      DelayToRemove: 0.1
     PlatformSpringingData:
       SpringForce: 20
   EnemySpawnData:

@@ -32,7 +32,7 @@ namespace Code.Gameplay.Platforms
         public void Init(PlatformType platformType, PlatformSettingsData data)
         {
             Type = platformType;
-            _delayToRemove = data.PlatformBreakingData.DealyToRemove;
+            _delayToRemove = data.PlatformBreakingData.DelayToRemove;
         }
 
         public void SetCallbackReturnToPool(Action<IPlatform> returnCallback)
