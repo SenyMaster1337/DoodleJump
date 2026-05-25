@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Code.StaticData.Enemy;
 using Code.StaticData.Game;
@@ -38,19 +39,31 @@ namespace Code.Infrastructure.Services.StaticData
                 .ToDictionary(x => x.Type, x => x);
         }
 
-        public GameStaticData GetGameStaticData(string sceneKey) =>
-            _gameStaticData.TryGetValue(sceneKey, out GameStaticData staticData)
-                ? staticData
-                : null;
+        public GameStaticData GetGameStaticData(string sceneKey)
+        {
+            if (_gameStaticData.TryGetValue(sceneKey, out GameStaticData staticData))
+                return staticData;
 
-        public PlatformData GetPlatformData(PlatformType platformType) =>
-            _platformStaticData.TryGetValue(platformType, out PlatformStaticData staticData)
-                ? staticData.PlatformData
-                : null;
+            throw new InvalidOperationException(
+                $"GameStaticData for scene key '{sceneKey}' not found. Check Resources/{GameStaticDataPath}.");
+        }
 
-        public EnemyData GetEnemyData(EnemyType enemyType) =>
-            _enemyStaticData.TryGetValue(enemyType, out EnemyStaticData staticData)
-                ? staticData.EnemyData
-                : null;
+        public PlatformData GetPlatformData(PlatformType platformType)
+        {
+            if (_platformStaticData.TryGetValue(platformType, out PlatformStaticData staticData))
+                return staticData.PlatformData;
+
+            throw new InvalidOperationException(
+                $"PlatformData for type '{platformType}' not found. Check Resources/{PlatformStaticDataPath}.");
+        }
+
+        public EnemyData GetEnemyData(EnemyType enemyType)
+        {
+            if (_enemyStaticData.TryGetValue(enemyType, out EnemyStaticData staticData))
+                return staticData.EnemyData;
+
+            throw new InvalidOperationException(
+                $"EnemyData for type '{enemyType}' not found. Check Resources/{EnemiesStaticDataPath}.");
+        }
     }
 }
