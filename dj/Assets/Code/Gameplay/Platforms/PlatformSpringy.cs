@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Code.Gameplay.Platforms
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class PlatformSpringy : MonoBehaviour, IPlatform
+    public class PlatformSpringy : MonoBehaviour, IPlatform, IConfigurablePlatform
     {
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
@@ -23,11 +23,11 @@ namespace Code.Gameplay.Platforms
             GameObject = gameObject;
         }
 
-        public void Init(PlatformType platformType, PlatformSettingsData data)
-        {
-            Type = platformType;
-            _springComponentToPlatform.Init(data.PlatformSpringingData.SpringForce);
-        }
+        public void InitType(PlatformType platformType) 
+            => Type = platformType;
+
+        public void InitSettings(PlatformSettingsData data) 
+            => _springComponentToPlatform.Init(data.PlatformSpringingData.SpringForce);
 
         public void SetCallbackReturnToPool(Action<IPlatform> returnCallback)
             => _expired = returnCallback;

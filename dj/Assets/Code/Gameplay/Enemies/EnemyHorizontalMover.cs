@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Enemies
 {
-    public class EnemyHorizontalMover : HorizontalPingPongMover, IEnemy
+    public class EnemyHorizontalMover : HorizontalPingPongMover, IEnemy, IConfigurableEnemy
     {
         public EnemyType Type { get; private set; }
         public Transform Transform { get; private set; }
@@ -19,9 +19,11 @@ namespace Code.Gameplay.Enemies
             GameObject = gameObject;
         }
 
-        public void Init(EnemyType type, EnemySettingsData data)
+        public void InitType(EnemyType type)
+            => Type = type;
+
+        public void InitSettings(EnemySettingsData data)
         {
-            Type = type;
             _speed = data.EnemyHorizontalMoverData.Speed;
             _range = data.EnemyHorizontalMoverData.RangeHorizontalMoving;
         }

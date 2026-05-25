@@ -39,7 +39,7 @@ MonoBehaviour:
     - Type: 4
       Chance: 0.175
   PlatformSettingsData:
-    platformHorizontalMovingData:
+    PlatformHorizontalMovingData:
       MoveSpeed: 2
       RangeHorizontalMoving: 4
     PlatformBreakingData:

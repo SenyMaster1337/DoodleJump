@@ -18,7 +18,7 @@ namespace Code.Gameplay.Enemies
             GameObject = gameObject;
         }
 
-        public void Init(EnemyType type, EnemySettingsData data)
+        public void InitType(EnemyType type)
             => Type = type;
 
         public void SetCallbackReturnToPool(Action<IEnemy> returnCallback)

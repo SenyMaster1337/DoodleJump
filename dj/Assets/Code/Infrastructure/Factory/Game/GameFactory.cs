@@ -54,11 +54,13 @@ namespace Code.Infrastructure.Factory.Game
         public GameObject CreateEnemy(EnemyType type)
         {
             var enemyData = _staticDataService.GetEnemyData(type);
-
             GameObject enemy = _instantiator.InstantiatePrefab(enemyData.EnemyPrefab);
 
-            enemy.GetComponent<IEnemy>()
-                .Init(type, _staticDataService.GetGameStaticData(MainSceneName).EnemySettingsData);
+            var enemyComponent = enemy.GetComponent<IEnemy>();
+            enemyComponent.InitType(type);
+
+            if (enemyComponent is IConfigurableEnemy configurator)
+                configurator.InitSettings(_staticDataService.GetGameStaticData(MainSceneName).EnemySettingsData);
 
             return enemy;
         }
@@ -66,11 +68,13 @@ namespace Code.Infrastructure.Factory.Game
         public GameObject CreatePlatform(PlatformType type)
         {
             var platformData = _staticDataService.GetPlatformData(type);
-
             GameObject platform = _instantiator.InstantiatePrefab(platformData.PlatformPrefab);
 
-            platform.GetComponent<IPlatform>()
-                .Init(type, _staticDataService.GetGameStaticData(MainSceneName).PlatformSettingsData);
+            var platformComponent = platform.GetComponent<IPlatform>();
+            platformComponent.InitType(type);
+
+            if (platformComponent is IConfigurablePlatform configurable)
+                configurable.InitSettings(_staticDataService.GetGameStaticData(MainSceneName).PlatformSettingsData);
 
             return platform;
         }

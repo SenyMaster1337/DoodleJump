@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Platforms
 {
-    public class PlatformHorizontalMover : HorizontalPingPongMover, IPlatform
+    public class PlatformHorizontalMover : HorizontalPingPongMover, IPlatform, IConfigurablePlatform
     {
         public PlatformType Type { get; private set; }
         public Transform Transform { get; private set; }
@@ -19,11 +19,13 @@ namespace Code.Gameplay.Platforms
             GameObject = gameObject;
         }
 
-        public void Init(PlatformType platformType, PlatformSettingsData data)
+        public void InitType(PlatformType platformType) 
+            => Type = platformType;
+
+        public void InitSettings(PlatformSettingsData data)
         {
-            Type = platformType;
-            _speed = data.platformHorizontalMovingData.MoveSpeed;
-            _range = data.platformHorizontalMovingData.RangeHorizontalMoving;
+            _speed = data.PlatformHorizontalMovingData.MoveSpeed;
+            _range = data.PlatformHorizontalMovingData.RangeHorizontalMoving;
         }
 
         public void SetCallbackReturnToPool(Action<IPlatform> returnCallback)

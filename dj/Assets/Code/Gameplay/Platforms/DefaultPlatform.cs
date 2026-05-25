@@ -18,7 +18,7 @@ namespace Code.Gameplay.Platforms
             GameObject = gameObject;
         }
 
-        public void Init(PlatformType platformType, PlatformSettingsData data)
+        public void InitType(PlatformType platformType)
             => Type = platformType;
 
         public void SetCallbackReturnToPool(Action<IPlatform> returnCallback)

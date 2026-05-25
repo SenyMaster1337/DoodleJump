@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Platforms
 {
-    public class PlatformBreaker : MonoBehaviour, IPlatform
+    public class PlatformBreaker : MonoBehaviour, IPlatform, IConfigurablePlatform
     {
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
@@ -34,11 +34,11 @@ namespace Code.Gameplay.Platforms
             }
         }
 
-        public void Init(PlatformType platformType, PlatformSettingsData data)
-        {
-            Type = platformType;
-            _delayToRemove = data.PlatformBreakingData.DelayToRemove;
-        }
+        public void InitType(PlatformType platformType)
+            => Type = platformType;
+
+        public void InitSettings(PlatformSettingsData data)
+            => _delayToRemove = data.PlatformBreakingData.DelayToRemove;
 
         public void SetCallbackReturnToPool(Action<IPlatform> returnCallback)
             => _expired = returnCallback;

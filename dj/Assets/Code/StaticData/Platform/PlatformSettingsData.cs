@@ -5,7 +5,7 @@ namespace Code.StaticData.Platform
     [Serializable]
     public class PlatformSettingsData
     {
-        public PlatformHorizontalMovingData platformHorizontalMovingData;
+        public PlatformHorizontalMovingData PlatformHorizontalMovingData;
         public PlatformBreakingData PlatformBreakingData;
         public PlatformSpringingData PlatformSpringingData;
     }

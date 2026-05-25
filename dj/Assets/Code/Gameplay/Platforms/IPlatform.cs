@@ -9,7 +9,7 @@ namespace Code.Gameplay.Platforms
         Transform Transform { get; }
         GameObject GameObject { get; }
         PlatformType Type { get; }
-        void Init(PlatformType platformType, PlatformSettingsData data);
+        void InitType(PlatformType platformType);
         void SetCallbackReturnToPool(Action<IPlatform> returnCallback);
         void Expire();
     }

@@ -8,9 +8,9 @@ namespace Code.Gameplay.Enemies
     {
         Transform Transform { get; }
         GameObject GameObject { get; }
-        public EnemyType Type { get; }
-        public void Init(EnemyType type, EnemySettingsData data);
-        public void SetCallbackReturnToPool(Action<IEnemy> returnCallback);
-        public void Die();
+        EnemyType Type { get; }
+        void InitType(EnemyType type);
+        void SetCallbackReturnToPool(Action<IEnemy> returnCallback);
+        void Die();
     }
 }
