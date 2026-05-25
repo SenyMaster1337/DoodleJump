@@ -1,18 +1,15 @@
 using System;
+using Code.Gameplay.Common;
 using Code.StaticData.Enemy;
 using UnityEngine;
 
 namespace Code.Gameplay.Enemies
 {
-    public class EnemyHorizontalMover : MonoBehaviour, IEnemy
+    public class EnemyHorizontalMover : HorizontalPingPongMover, IEnemy
     {
+        public EnemyType Type { get; private set; }
         public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
-        public EnemyType Type { get; private set; }
-
-        private float _speed;
-        private float _range;
-        private float _startX;
 
         private Action<IEnemy> _dead;
 
@@ -20,16 +17,6 @@ namespace Code.Gameplay.Enemies
         {
             Transform = transform;
             GameObject = gameObject;
-
-            _startX = transform.position.x;
-        }
-
-        private void Update()
-        {
-            float x = _startX + Mathf.PingPong(Time.time * _speed, _range * 2) - _range;
-
-            transform.position =
-                new Vector3(x, transform.position.y, transform.position.z);
         }
 
         public void Init(EnemyType type, EnemySettingsData data)
