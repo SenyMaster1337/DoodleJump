@@ -2,6 +2,7 @@ using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
 using Code.Logic.LoadingCurtains;
+using Code.Services.BulletSpawners;
 using Code.Services.CameraFollowers;
 using Code.Services.CameraProviders;
 using Code.Services.EnemySpawner;
@@ -19,7 +20,6 @@ namespace Code.Infrastructure.States
         private const string EmptySceneName = "Empty";
         private const string MainSceneName = "Main";
 
-        private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
         private readonly ICameraProvider _cameraProvider;
@@ -30,14 +30,14 @@ namespace Code.Infrastructure.States
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
         private readonly IGoogleAdsShowerService _adsShowerService;
         private readonly IStaticDataService _staticDataService;
+        private readonly IBulletSpawnerService _bulletSpawnerService;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
+        public LoadLevelState(SceneLoader sceneLoader, IGameFactory gameFactory,
             ICameraProvider cameraProvider, IPlatformSpawnerService platformSpawnerService,
             IEnemySpawnerService enemySpawnService, IUIFactory uiFactory, IScoreShowerService scoreShowerService,
             ILoadingCurtainProvider loadingCurtainProvider, IGoogleAdsShowerService adsShowerService,
-            IStaticDataService staticDataService)
+            IStaticDataService staticDataService, IBulletSpawnerService bulletSpawnerService)
         {
-            _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
             _cameraProvider = cameraProvider;
@@ -48,6 +48,7 @@ namespace Code.Infrastructure.States
             _loadingCurtainProvider = loadingCurtainProvider;
             _adsShowerService = adsShowerService;
             _staticDataService = staticDataService;
+            _bulletSpawnerService = bulletSpawnerService;
         }
 
         public void Enter(string sceneName)
@@ -58,7 +59,6 @@ namespace Code.Infrastructure.States
 
         public void Exit()
         {
-            _loadingCurtainProvider.LoadingCurtain.Hide();
         }
 
         private void OnLoaded()
@@ -71,7 +71,13 @@ namespace Code.Infrastructure.States
             InitSpawners(player);
             InitCameraFollower(player, data);
             InitAdsShower();
+            ClearPoolBulletSpawner();
+            
+            _loadingCurtainProvider.LoadingCurtain.Hide();
         }
+
+        private void ClearPoolBulletSpawner()
+            => _bulletSpawnerService.ClearPool();
 
         private void InitAdsShower()
             => _adsShowerService.ShowInterAd();

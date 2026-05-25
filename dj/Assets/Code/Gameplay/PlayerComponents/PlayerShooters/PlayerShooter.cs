@@ -19,9 +19,6 @@ namespace Code.Gameplay.PlayerComponents.PlayerShooters
             _spawnService = spawnService;
         }
 
-        private void Awake() 
-            => _spawnService.ClearPool();
-
         private void Update()
         {
             if (_inputService.IsFirePressed)

@@ -28,6 +28,7 @@ namespace Code.Services.BulletSpawners
 
         public void ClearPool()
         {
+            Debug.Log("POOL CLEARED");
             _pool.Clear();
             _active.Clear();
         }
