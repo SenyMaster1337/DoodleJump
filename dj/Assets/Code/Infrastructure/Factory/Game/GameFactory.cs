@@ -1,8 +1,10 @@
 using Code.Gameplay.Enemies;
 using Code.Gameplay.Platforms;
+using Code.Gameplay.PlayerComponents;
 using Code.Gameplay.PlayerComponents.PlayerJumpers;
 using Code.Gameplay.PlayerComponents.PlayerMovers;
 using Code.Infrastructure.AssetManagement;
+using Code.Services.LoseServices;
 using Code.Services.StaticData;
 using Code.StaticData.Enemy;
 using Code.StaticData.Platform;
@@ -17,13 +19,15 @@ namespace Code.Infrastructure.Factory.Game
 
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
+        private readonly ILoseService _loseService;
 
         private IInstantiator _instantiator;
 
-        public GameFactory(IAssetProvider assetProvider, IStaticDataService staticDataService)
+        public GameFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, ILoseService loseService)
         {
             _assetProvider = assetProvider;
             _staticDataService = staticDataService;
+            _loseService = loseService;
         }
 
         public void SetSceneInstantiator(IInstantiator instantiator)
@@ -41,6 +45,8 @@ namespace Code.Infrastructure.Factory.Game
 
             player.GetComponent<PlayerMover>().Init(playerSettingsData.MoveSpeed);
             player.GetComponent<PlayerJumper>().Init(playerSettingsData.JumpForce);
+
+            player.GetComponent<Player>().Dead += _loseService.StartLoseProcess;
 
             return player;
         }

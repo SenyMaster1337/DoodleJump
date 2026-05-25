@@ -1,4 +1,3 @@
-using Code.Gameplay.PlayerComponents;
 using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
@@ -8,7 +7,6 @@ using Code.Services.CameraProviders;
 using Code.Services.EnemySpawner;
 using Code.Services.GoogleAdsShowers;
 using Code.Services.PlatformSpawner;
-using Code.Services.PlayerDeathServices;
 using Code.Services.ScoreShowerServices;
 using Code.Services.StaticData;
 using Code.StaticData.Game;
@@ -28,7 +26,6 @@ namespace Code.Infrastructure.States
         private readonly IPlatformSpawnerService _platformSpawnerService;
         private readonly IEnemySpawnerService _enemySpawnService;
         private readonly IUIFactory _uiFactory;
-        private readonly IPlayerDeathHandler _playerDeathHandler;
         private readonly IScoreShowerService _scoreShowerService;
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
         private readonly IGoogleAdsShowerService _adsShowerService;
@@ -36,8 +33,7 @@ namespace Code.Infrastructure.States
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
             ICameraProvider cameraProvider, IPlatformSpawnerService platformSpawnerService,
-            IEnemySpawnerService enemySpawnService, IUIFactory uiFactory,
-            IPlayerDeathHandler playerDeathHandler, IScoreShowerService scoreShowerService,
+            IEnemySpawnerService enemySpawnService, IUIFactory uiFactory, IScoreShowerService scoreShowerService,
             ILoadingCurtainProvider loadingCurtainProvider, IGoogleAdsShowerService adsShowerService,
             IStaticDataService staticDataService)
         {
@@ -48,7 +44,6 @@ namespace Code.Infrastructure.States
             _platformSpawnerService = platformSpawnerService;
             _enemySpawnService = enemySpawnService;
             _uiFactory = uiFactory;
-            _playerDeathHandler = playerDeathHandler;
             _scoreShowerService = scoreShowerService;
             _loadingCurtainProvider = loadingCurtainProvider;
             _adsShowerService = adsShowerService;
@@ -75,7 +70,6 @@ namespace Code.Infrastructure.States
             InitGameWorld();
             InitSpawners(player);
             InitCameraFollower(player, data);
-            InitPlayerDeathHandler(player);
             InitAdsShower();
 
             _stateMachine.Enter<GameLoopState>();
@@ -83,9 +77,6 @@ namespace Code.Infrastructure.States
 
         private void InitAdsShower()
             => _adsShowerService.ShowInterAd();
-
-        private void InitPlayerDeathHandler(GameObject player)
-            => _playerDeathHandler.SetPlayer(player.GetComponent<Player>());
 
         private void InitCameraFollower(GameObject player, GameStaticData data)
         {

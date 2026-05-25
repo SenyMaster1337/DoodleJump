@@ -17,7 +17,6 @@ using Code.Services.LoadGameLevelServices;
 using Code.Services.LoseServices;
 using Code.Services.PersistentProgress;
 using Code.Services.PlatformSpawner;
-using Code.Services.PlayerDeathServices;
 using Code.Services.PlayerInput;
 using Code.Services.RestartGameServices;
 using Code.Services.SaveLoad;
@@ -56,7 +55,6 @@ namespace Code.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<ScoreShowerService>().AsSingle();
             Container.Bind<IBulletSpawnerService>().To<BulletSpawnerService>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadGameLevelService>().AsSingle();
-            Container.Bind<IPlayerDeathHandler>().To<PlayerDeathHandler>().AsSingle();
             Container.Bind<ILoseService>().To<LoseService>().AsSingle();
             Container.BindInterfacesAndSelfTo<RestartGameService>().AsSingle();
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
