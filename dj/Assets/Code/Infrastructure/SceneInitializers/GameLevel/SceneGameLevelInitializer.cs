@@ -1,5 +1,5 @@
 using Code.Infrastructure.Factory.Game;
-using Code.Infrastructure.Factory.Projectile;
+using Code.Infrastructure.Factory.ProjectileFactory;
 using Code.Infrastructure.Factory.UI;
 using Zenject;
 

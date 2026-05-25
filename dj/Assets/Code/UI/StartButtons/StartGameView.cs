@@ -1,4 +1,4 @@
-using Code.Signals.StartGameSignals;
+using Code.Core.Signals;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

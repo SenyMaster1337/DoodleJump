@@ -1,10 +1,7 @@
 {
-    "name": "Editor",
+    "name": "StaticData",
     "rootNamespace": "",
-    "references": [
-        "GUID:89cc17c6e4b43aa4da0d5163d79ba918",
-        "GUID:7b5b7326a2428aa4a80e42cd614e7f9b"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

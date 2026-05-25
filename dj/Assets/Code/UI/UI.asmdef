@@ -1,9 +1,10 @@
 {
-    "name": "Editor",
+    "name": "UI",
     "rootNamespace": "",
     "references": [
-        "GUID:89cc17c6e4b43aa4da0d5163d79ba918",
-        "GUID:7b5b7326a2428aa4a80e42cd614e7f9b"
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:64ac09b555b2dc744b9f1514f21975fc"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

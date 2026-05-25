@@ -1,15 +1,15 @@
+using Code.Core.Interfaces;
+using Code.Core.LoadingCurtains;
 using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
-using Code.Logic.LoadingCurtains;
-using Code.Services.BulletSpawners;
-using Code.Services.CameraFollowers;
-using Code.Services.CameraProviders;
-using Code.Services.EnemySpawner;
-using Code.Services.GoogleAdsShowers;
-using Code.Services.PlatformSpawner;
-using Code.Services.ScoreShowerServices;
-using Code.Services.StaticData;
+using Code.Infrastructure.Services.CameraFollowers;
+using Code.Infrastructure.Services.CameraProviders;
+using Code.Infrastructure.Services.EnemySpawner;
+using Code.Infrastructure.Services.GoogleAdsShowers;
+using Code.Infrastructure.Services.PlatformSpawner;
+using Code.Infrastructure.Services.ScoreShowerServices;
+using Code.Infrastructure.Services.StaticData;
 using Code.StaticData.Game;
 using UnityEngine;
 

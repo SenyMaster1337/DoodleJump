@@ -1,5 +1,4 @@
-using Code.Services.BulletSpawners;
-using Code.Services.PlayerInput;
+using Code.Core.Interfaces;
 using UnityEngine;
 using Zenject;
 

@@ -1,6 +1,6 @@
+using Code.Core.LoadingCurtains;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
-using Code.Logic.LoadingCurtains;
 
 namespace Code.Infrastructure.States
 {
