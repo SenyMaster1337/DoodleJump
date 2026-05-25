@@ -3,7 +3,7 @@ using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
 using Code.Logic.LoadingCurtains;
-using Code.Services.CamaraFollowers;
+using Code.Services.CameraFollowers;
 using Code.Services.CameraProviders;
 using Code.Services.EnemySpawner;
 using Code.Services.GoogleAdsShowers;
