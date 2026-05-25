@@ -1,20 +1,12 @@
-using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
 using Code.Logic.LoadingCurtains;
-using Code.Services.CameraProviders;
-using Code.Services.EnemySpawner;
-using Code.Services.PlatformSpawner;
 
 namespace Code.Infrastructure.States
 {
     public class LoadMainMenuState : IPayloadedState<string>
     {
         private readonly SceneLoader _sceneLoader;
-        private readonly IGameFactory _gameFactory;
-        private readonly ICameraProvider _cameraProvider;
-        private readonly IPlatformSpawnService _platformSpawnService;
-        private readonly IEnemySpawnerService _enemySpawnService;
         private readonly IUIFactory _uiFactory;
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
 
