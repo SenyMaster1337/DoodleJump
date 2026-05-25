@@ -1,4 +1,3 @@
-using Code.Infrastructure.SceneInitializers;
 using Code.Infrastructure.SceneInitializers.MainMenu;
 using Zenject;
 
