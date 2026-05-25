@@ -58,12 +58,6 @@ namespace Code.Services.EnemySpawner
                 _pool[type] = new Queue<IEnemy>();
         }
 
-        public void DeactivateService()
-        {
-            _isActive = false;
-            _platformSpawnerService.PlatformSpawned -= OnEnemySpawned;
-        }
-
         public void ReturnToPool(IEnemy enemyDefault)
         {
             enemyDefault.GameObject.SetActive(false);
