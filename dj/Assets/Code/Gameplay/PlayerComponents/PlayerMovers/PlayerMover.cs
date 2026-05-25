@@ -11,6 +11,7 @@ namespace Code.Gameplay.PlayerComponents.PlayerMovers
         private IInputService _inputService;
         private Rigidbody2D _rigidbody;
         private float _moveSpeed;
+        private float _horizontalInput;
 
         [Inject]
         public void Construct(IInputService inputService)
@@ -25,10 +26,10 @@ namespace Code.Gameplay.PlayerComponents.PlayerMovers
         }
 
         private void Update()
-        {
-            float horizontal = _inputService.Horizontal;
-            _rigidbody.velocity = new Vector2(horizontal * _moveSpeed, _rigidbody.velocity.y);
-        }
+            => _horizontalInput = _inputService.Horizontal;
+
+        private void FixedUpdate()
+            => _rigidbody.velocity = new Vector2(_horizontalInput * _moveSpeed, _rigidbody.velocity.y);
 
         public void Init(float moveSpeed)
             => _moveSpeed = moveSpeed;
