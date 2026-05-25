@@ -12,20 +12,25 @@ namespace Code.Gameplay.Platforms
         public PlatformType Type { get; private set; }
 
         private Action<IPlatform> _expired;
-        
         private float _delayToRemove;
-        
+        private Coroutine _breakCoroutine;
+
         private void Awake()
         {
             Transform = transform;
             GameObject = gameObject;
         }
 
+        private void OnEnable()
+        {
+            _breakCoroutine = null;
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.rigidbody.velocity.y <= 0)
+            if (collision.rigidbody.velocity.y <= 0 && _breakCoroutine == null)
             {
-                StartCoroutine(DisableAfterDelay());
+                _breakCoroutine = StartCoroutine(DisableAfterDelay());
             }
         }
 
@@ -38,8 +43,16 @@ namespace Code.Gameplay.Platforms
         public void SetCallbackReturnToPool(Action<IPlatform> returnCallback)
             => _expired = returnCallback;
 
-        public void Expire() 
-            => _expired?.Invoke(this);
+        public void Expire()
+        {
+            if (_breakCoroutine != null)
+            {
+                StopCoroutine(_breakCoroutine);
+                _breakCoroutine = null;
+            }
+
+            _expired?.Invoke(this);
+        }
 
         private IEnumerator DisableAfterDelay()
         {
