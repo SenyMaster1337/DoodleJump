@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Code.Gameplay.Platforms;
 using Code.Gameplay.Score;
 using Code.Infrastructure.Factory.Game;
+using Code.Infrastructure.SceneNameConstants;
 using Code.Infrastructure.Services.StaticData;
 using Code.StaticData.Platform;
 using UnityEngine;
@@ -12,7 +13,6 @@ namespace Code.Infrastructure.Services.PlatformSpawner
 {
     public class PlatformSpawnerService : IPlatformSpawnerService
     {
-        private const string MainSceneName = "Main";
         private const float MinRoll = 0f;
         private const float MaxRoll = 1f;
         private const float MaxChance = 1f;
@@ -58,7 +58,7 @@ namespace Code.Infrastructure.Services.PlatformSpawner
             _currentRowY = 0;
             _isEmptyChanceActive = false;
 
-            _platformsSpawnData = _staticDataService.GetGameStaticData(MainSceneName).PlatformsSpawnData;
+            _platformsSpawnData = _staticDataService.GetGameStaticData(SceneNames.Main).PlatformsSpawnData;
             _chances = _platformsSpawnData.PlatformChances;
 
             foreach (PlatformType type in Enum.GetValues(typeof(PlatformType)))
@@ -78,7 +78,7 @@ namespace Code.Infrastructure.Services.PlatformSpawner
 
         private void PlaceFirstPlatform()
             => PlacePlatform(PlatformType.Default,
-                _staticDataService.GetGameStaticData(MainSceneName).StartSpawnPosition);
+                _staticDataService.GetGameStaticData(SceneNames.Main).StartSpawnPosition);
 
         public void ReturnToPool(IPlatform platform)
         {

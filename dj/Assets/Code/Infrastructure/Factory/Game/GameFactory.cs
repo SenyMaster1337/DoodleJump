@@ -4,19 +4,19 @@ using Code.Gameplay.PlayerComponents;
 using Code.Gameplay.PlayerComponents.PlayerJumpers;
 using Code.Gameplay.PlayerComponents.PlayerMovers;
 using Code.Infrastructure.AssetManagement;
+using Code.Infrastructure.SceneNameConstants;
 using Code.Infrastructure.Services.LoseServices;
 using Code.Infrastructure.Services.StaticData;
 using Code.StaticData.Enemy;
 using Code.StaticData.Platform;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Code.Infrastructure.Factory.Game
 {
     public class GameFactory : IGameFactory
     {
-        private const string MainSceneName = "Main";
-
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
         private readonly ILoseService _loseService;
@@ -37,7 +37,7 @@ namespace Code.Infrastructure.Factory.Game
         {
             var playerPrefab = _assetProvider.Load(AssetPath.PlayerPath);
 
-            var gameStaticData = _staticDataService.GetGameStaticData(MainSceneName);
+            var gameStaticData = _staticDataService.GetGameStaticData(SceneNames.Main);
             var playerSettingsData = gameStaticData.PlayerSettingsData;
 
             GameObject player = _instantiator.InstantiatePrefab(playerPrefab, gameStaticData.StartSpawnPosition,
@@ -60,7 +60,7 @@ namespace Code.Infrastructure.Factory.Game
             enemyComponent.InitType(type);
 
             if (enemyComponent is IConfigurableEnemy configurator)
-                configurator.InitSettings(_staticDataService.GetGameStaticData(MainSceneName).EnemySettingsData);
+                configurator.InitSettings(_staticDataService.GetGameStaticData(SceneNames.Main).EnemySettingsData);
 
             return enemy;
         }
@@ -74,7 +74,7 @@ namespace Code.Infrastructure.Factory.Game
             platformComponent.InitType(type);
 
             if (platformComponent is IConfigurablePlatform configurable)
-                configurable.InitSettings(_staticDataService.GetGameStaticData(MainSceneName).PlatformSettingsData);
+                configurable.InitSettings(_staticDataService.GetGameStaticData(SceneNames.Main).PlatformSettingsData);
 
             return platform;
         }

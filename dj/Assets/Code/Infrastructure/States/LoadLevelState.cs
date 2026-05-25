@@ -3,6 +3,7 @@ using Code.Core.LoadingCurtains;
 using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.SceneLoaders;
+using Code.Infrastructure.SceneNameConstants;
 using Code.Infrastructure.Services.CameraFollowers;
 using Code.Infrastructure.Services.CameraProviders;
 using Code.Infrastructure.Services.EnemySpawner;
@@ -17,9 +18,6 @@ namespace Code.Infrastructure.States
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private const string EmptySceneName = "Empty";
-        private const string MainSceneName = "Main";
-
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
         private readonly ICameraProvider _cameraProvider;
@@ -54,7 +52,7 @@ namespace Code.Infrastructure.States
         public void Enter(string sceneName)
         {
             _loadingCurtainProvider.LoadingCurtain.Show();
-            _sceneLoader.Load(EmptySceneName, () => _sceneLoader.Load(sceneName, OnLoaded));
+            _sceneLoader.Load(SceneNames.Empty, () => _sceneLoader.Load(sceneName, OnLoaded));
         }
 
         public void Exit()
@@ -63,7 +61,7 @@ namespace Code.Infrastructure.States
 
         private void OnLoaded()
         {
-            var data = _staticDataService.GetGameStaticData(MainSceneName);
+            var data = _staticDataService.GetGameStaticData(SceneNames.Main);
             var player = _gameFactory.CreatePlayer();
 
             InitUIRoot();

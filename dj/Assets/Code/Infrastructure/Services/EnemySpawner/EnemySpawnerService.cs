@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Code.Gameplay.Enemies;
 using Code.Gameplay.Score;
 using Code.Infrastructure.Factory.Game;
+using Code.Infrastructure.SceneNameConstants;
 using Code.Infrastructure.Services.PlatformSpawner;
 using Code.Infrastructure.Services.StaticData;
 using Code.StaticData.Enemy;
@@ -13,7 +14,6 @@ namespace Code.Infrastructure.Services.EnemySpawner
 {
     public class EnemySpawnerService : IEnemySpawnerService
     {
-        private const string MainSceneName = "Main";
         private const float MinRoll = 0f;
         private const float MaxRoll = 1f;
 
@@ -51,7 +51,7 @@ namespace Code.Infrastructure.Services.EnemySpawner
             _active.Clear();
             _pool.Clear();
 
-            _data = _staticDataService.GetGameStaticData(MainSceneName).EnemySpawnData;
+            _data = _staticDataService.GetGameStaticData(SceneNames.Main).EnemySpawnData;
             _chances = _data.EnemyChances;
 
             foreach (EnemyType type in Enum.GetValues(typeof(EnemyType)))
@@ -85,7 +85,7 @@ namespace Code.Infrastructure.Services.EnemySpawner
                 return;
 
             EnemyType type = GetRandomType();
-            
+
             if (type == EnemyType.None)
                 return;
 
@@ -112,7 +112,7 @@ namespace Code.Infrastructure.Services.EnemySpawner
             foreach (var ec in _chances)
             {
                 cumulative += ec.Chance;
-                
+
                 if (roll < cumulative)
                     return ec.Type;
             }
