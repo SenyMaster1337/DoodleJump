@@ -56,7 +56,7 @@ namespace Code.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<ScoreShowerService>().AsSingle();
             Container.Bind<IBulletSpawnerService>().To<BulletSpawnerService>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadGameLevelService>().AsSingle();
-            Container.Bind<IPlayerDeathHandlerServices>().To<PlayerDeathHandlerServices>().AsSingle();
+            Container.Bind<IPlayerDeathHandler>().To<PlayerDeathHandler>().AsSingle();
             Container.Bind<ILoseService>().To<LoseService>().AsSingle();
             Container.BindInterfacesAndSelfTo<RestartGameService>().AsSingle();
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();

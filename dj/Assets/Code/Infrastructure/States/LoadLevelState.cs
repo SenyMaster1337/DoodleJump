@@ -28,7 +28,7 @@ namespace Code.Infrastructure.States
         private readonly IPlatformSpawnerService _platformSpawnerService;
         private readonly IEnemySpawnerService _enemySpawnService;
         private readonly IUIFactory _uiFactory;
-        private readonly IPlayerDeathHandlerServices _playerDeathHandlerServices;
+        private readonly IPlayerDeathHandler _playerDeathHandler;
         private readonly IScoreShowerService _scoreShowerService;
         private readonly ILoadingCurtainProvider _loadingCurtainProvider;
         private readonly IGoogleAdsShowerService _adsShowerService;
@@ -37,7 +37,7 @@ namespace Code.Infrastructure.States
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
             ICameraProvider cameraProvider, IPlatformSpawnerService platformSpawnerService,
             IEnemySpawnerService enemySpawnService, IUIFactory uiFactory,
-            IPlayerDeathHandlerServices playerDeathHandlerServices, IScoreShowerService scoreShowerService,
+            IPlayerDeathHandler playerDeathHandler, IScoreShowerService scoreShowerService,
             ILoadingCurtainProvider loadingCurtainProvider, IGoogleAdsShowerService adsShowerService,
             IStaticDataService staticDataService)
         {
@@ -48,7 +48,7 @@ namespace Code.Infrastructure.States
             _platformSpawnerService = platformSpawnerService;
             _enemySpawnService = enemySpawnService;
             _uiFactory = uiFactory;
-            _playerDeathHandlerServices = playerDeathHandlerServices;
+            _playerDeathHandler = playerDeathHandler;
             _scoreShowerService = scoreShowerService;
             _loadingCurtainProvider = loadingCurtainProvider;
             _adsShowerService = adsShowerService;
@@ -85,7 +85,7 @@ namespace Code.Infrastructure.States
             => _adsShowerService.ShowInterAd();
 
         private void InitPlayerDeathHandler(GameObject player)
-            => _playerDeathHandlerServices.SetPlayer(player.GetComponent<Player>());
+            => _playerDeathHandler.SetPlayer(player.GetComponent<Player>());
 
         private void InitCameraFollower(GameObject player, GameStaticData data)
         {

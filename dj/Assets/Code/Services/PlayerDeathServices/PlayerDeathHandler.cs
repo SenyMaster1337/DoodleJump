@@ -3,13 +3,13 @@ using Code.Services.LoseServices;
 
 namespace Code.Services.PlayerDeathServices
 {
-    public class PlayerDeathHandlerServices : IPlayerDeathHandlerServices
+    public class PlayerDeathHandler : IPlayerDeathHandler
     {
         private readonly ILoseService _loseService;
 
         private Player _player;
 
-        public PlayerDeathHandlerServices(ILoseService loseService)
+        public PlayerDeathHandler(ILoseService loseService)
         {
             _loseService = loseService;
         }
