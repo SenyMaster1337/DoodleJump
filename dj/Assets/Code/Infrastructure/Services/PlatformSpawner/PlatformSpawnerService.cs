@@ -130,10 +130,10 @@ namespace Code.Infrastructure.Services.PlatformSpawner
         {
             IPlatform platform = GetFromPool(type) ?? _gameFactory.CreatePlatform(type).GetComponent<IPlatform>();
             platform.SetCallbackReturnToPool(ReturnToPool);
-            platform.Transform.position = position;
+            platform.GameObject.transform.position = position;
             platform.GameObject.SetActive(true);
             _active.Add(platform);
-            PlatformSpawned?.Invoke(platform.Transform.position);
+            PlatformSpawned?.Invoke(platform.GameObject.transform.position);
         }
 
         private int GetFreeColumn()

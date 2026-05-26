@@ -6,7 +6,6 @@ namespace Code.Gameplay.Enemies
 {
     public interface IEnemy
     {
-        Transform Transform { get; }
         GameObject GameObject { get; }
         EnemyType Type { get; }
         void InitType(EnemyType type);

@@ -8,16 +8,12 @@ namespace Code.Gameplay.Enemies
     public class EnemyHorizontalMover : HorizontalPingPongMover, IEnemy, IConfigurableEnemy
     {
         public EnemyType Type { get; private set; }
-        public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
 
         private Action<IEnemy> _dead;
 
-        private void Awake()
-        {
-            Transform = transform;
-            GameObject = gameObject;
-        }
+        private void Awake() 
+            => GameObject = gameObject;
 
         public void InitType(EnemyType type)
             => Type = type;

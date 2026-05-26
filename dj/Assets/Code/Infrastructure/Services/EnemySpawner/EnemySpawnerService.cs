@@ -93,7 +93,7 @@ namespace Code.Infrastructure.Services.EnemySpawner
 
             IEnemy enemyDefault = GetFromPool(type) ?? _gameFactory.CreateEnemy(type).GetComponent<IEnemy>();
             enemyDefault.SetCallbackReturnToPool(ReturnToPool);
-            enemyDefault.Transform.position = spawnPosition;
+            enemyDefault.GameObject.transform.position = spawnPosition;
             enemyDefault.GameObject.SetActive(true);
             _active.Add(enemyDefault);
         }

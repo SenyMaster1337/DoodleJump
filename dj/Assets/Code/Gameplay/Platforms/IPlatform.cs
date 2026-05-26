@@ -6,7 +6,6 @@ namespace Code.Gameplay.Platforms
 {
     public interface IPlatform
     {
-        Transform Transform { get; }
         GameObject GameObject { get; }
         PlatformType Type { get; }
         void InitType(PlatformType platformType);

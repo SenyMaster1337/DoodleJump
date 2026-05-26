@@ -7,7 +7,6 @@ namespace Code.Gameplay.Platforms
 {
     public class PlatformBreaker : MonoBehaviour, IPlatform, IConfigurablePlatform
     {
-        public Transform Transform { get; private set; }
         public GameObject GameObject { get; private set; }
         public PlatformType Type { get; private set; }
 
@@ -16,10 +15,7 @@ namespace Code.Gameplay.Platforms
         private Coroutine _breakCoroutine;
 
         private void Awake()
-        {
-            Transform = transform;
-            GameObject = gameObject;
-        }
+            => GameObject = gameObject;
 
         private void OnEnable()
         {
