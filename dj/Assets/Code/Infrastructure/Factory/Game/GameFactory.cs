@@ -20,18 +20,16 @@ namespace Code.Infrastructure.Factory.Game
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
         private readonly ILoseService _loseService;
+        private readonly IInstantiator _instantiator;
 
-        private IInstantiator _instantiator;
-
-        public GameFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, ILoseService loseService)
+        public GameFactory(IAssetProvider assetProvider, IStaticDataService staticDataService, ILoseService loseService,
+            IInstantiator instantiator)
         {
             _assetProvider = assetProvider;
             _staticDataService = staticDataService;
             _loseService = loseService;
+            _instantiator = instantiator;
         }
-
-        public void SetSceneInstantiator(IInstantiator instantiator)
-            => _instantiator = instantiator;
 
         public GameObject CreatePlayer()
         {

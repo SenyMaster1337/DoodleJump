@@ -1,14 +1,14 @@
 using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.Services.ScoreShowerServices;
 
-namespace Code.Infrastructure.Services.Setups.UI
+namespace Code.Infrastructure.Services.Setups.UI.GameLevel
 {
-    public class UISetup : IUISetup
+    public class GameLevelUISetup : IGameLevelUISetup
     {
         private readonly IUIFactory _uiFactory;
         private readonly IScoreShowerService _scoreShowerService;
 
-        public UISetup(IUIFactory uiFactory, IScoreShowerService scoreShowerService)
+        public GameLevelUISetup(IUIFactory uiFactory, IScoreShowerService scoreShowerService)
         {
             _uiFactory = uiFactory;
             _scoreShowerService = scoreShowerService;

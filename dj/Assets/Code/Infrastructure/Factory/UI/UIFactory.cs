@@ -9,20 +9,15 @@ namespace Code.Infrastructure.Factory.UI
     public class UIFactory : IUIFactory
     {
         private readonly IAssetProvider _assetProvider;
-
-        private IInstantiator _instantiator;
-
-        public UIFactory(IAssetProvider assetProvider)
-        {
-            _assetProvider = assetProvider;
-        }
-
-        public void SetSceneInstantiator(IInstantiator instantiator)
-        {
-            _instantiator = instantiator;
-        }
+        private readonly IInstantiator _instantiator;
 
         private GameObject _uiRoot;
+
+        public UIFactory(IAssetProvider assetProvider, IInstantiator instantiator)
+        {
+            _assetProvider = assetProvider;
+            _instantiator = instantiator;
+        }
 
         public GameObject CreateUIRoot()
         {
@@ -61,7 +56,7 @@ namespace Code.Infrastructure.Factory.UI
             return _instantiator.InstantiatePrefab(restartWindow, _uiRoot.transform);
         }
 
-        public ScoreShowerView GetScoreShowerView() 
+        public ScoreShowerView GetScoreShowerView()
             => FindExistingView<ScoreShowerView>();
 
         private TView FindExistingView<TView>() where TView : MonoBehaviour

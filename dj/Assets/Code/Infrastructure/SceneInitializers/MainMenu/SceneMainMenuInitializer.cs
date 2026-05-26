@@ -1,22 +1,24 @@
 using Code.Infrastructure.Factory.UI;
+using Code.Infrastructure.Services.Setups.UI.MainMenuUISetup;
 using Zenject;
 
 namespace Code.Infrastructure.SceneInitializers.MainMenu
 {
     public class SceneMainMenuInitializer : IInitializable
     {
+        private readonly IMainMenuUISetup _mainMenuUISetup;
         private readonly IUIFactory _uiFactory;
-        private readonly IInstantiator _instantiator;
 
-        public SceneMainMenuInitializer(IUIFactory uiFactory, IInstantiator instantiator)
+        public SceneMainMenuInitializer(IMainMenuUISetup mainMenuUISetup, IUIFactory uiFactory)
         {
+            _mainMenuUISetup = mainMenuUISetup;
             _uiFactory = uiFactory;
-            _instantiator = instantiator;
         }
 
         public void Initialize()
         {
-            _uiFactory.SetSceneInstantiator(_instantiator);
+            _uiFactory.CreateUIRoot();
+            _mainMenuUISetup.Init();
         }
     }
 }

@@ -3,18 +3,12 @@ using Code.Core.LoadingCurtains;
 using Code.Core.Signals;
 using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.CoroutineRunners;
-using Code.Infrastructure.Factory.Game;
-using Code.Infrastructure.Factory.ProjectileFactory;
-using Code.Infrastructure.Factory.UI;
 using Code.Infrastructure.GoogleAds;
 using Code.Infrastructure.SceneLoaders;
-using Code.Infrastructure.Services.GameTime;
 using Code.Infrastructure.Services.GoogleAdsShowers;
 using Code.Infrastructure.Services.LoadGameLevelServices;
-using Code.Infrastructure.Services.LoseServices;
 using Code.Infrastructure.Services.PersistentProgress;
 using Code.Infrastructure.Services.PlayerInput;
-using Code.Infrastructure.Services.RestartGameServices;
 using Code.Infrastructure.Services.SaveLoad;
 using Code.Infrastructure.Services.Setups.Ads;
 using Code.Infrastructure.Services.StaticData;
@@ -30,14 +24,13 @@ namespace Code.Infrastructure.Installers
         {
             BindCoroutine();
             BindInputs();
-            BindFactories();
             BindProviders();
             BindStates();
             BindSceneLoader();
             BindServices();
-            BindSignals();
             BindGoogleAds();
             BindSetups();
+            BindSignals();
         }
 
         private void BindCoroutine() =>
@@ -48,12 +41,9 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadGameLevelService>().AsSingle();
-            Container.Bind<ILoseService>().To<LoseService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RestartGameService>().AsSingle();
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IGoogleAdsShowerService>().To<GoogleAdsShowerService>().AsSingle();
-            Container.Bind<IGameTimeService>().To<GameTimeService>().AsSingle();
         }
 
         private void BindStates()
@@ -71,26 +61,14 @@ namespace Code.Infrastructure.Installers
             Container.Bind<ILoadingCurtainProvider>().To<LoadingCurtainProvider>().AsSingle();
         }
 
-        private void BindFactories()
-        {
-            Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
-            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
-            Container.Bind<IProjectileFactory>().To<ProjectileFactory>().AsSingle();
-        }
-
         private void BindInputs()
         {
             Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
         }
 
-        private void BindSceneLoader() =>
-            Container.Bind<SceneLoader>().AsSingle();
-
-        private void BindSignals()
+        private void BindSceneLoader()
         {
-            SignalBusInstaller.Install(Container);
-            Container.DeclareSignal<StartGameSignal>();
-            Container.DeclareSignal<RestartGameSignal>();
+            Container.Bind<SceneLoader>().AsSingle();
         }
 
         private void BindGoogleAds()
@@ -101,6 +79,13 @@ namespace Code.Infrastructure.Installers
         private void BindSetups()
         {
             Container.Bind<IAdsSetup>().To<AdsSetup>().AsSingle();
+        }
+
+        private void BindSignals()
+        {
+            SignalBusInstaller.Install(Container);
+            Container.DeclareSignal<StartGameSignal>();
+            Container.DeclareSignal<RestartGameSignal>();
         }
     }
 }

@@ -11,17 +11,13 @@ namespace Code.Infrastructure.Factory.ProjectileFactory
     {
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
+        private readonly IInstantiator _instantiator;
 
-        private IInstantiator _instantiator;
-
-        public ProjectileFactory(IAssetProvider assetProvider, IStaticDataService staticDataService)
+        public ProjectileFactory(IAssetProvider assetProvider, IStaticDataService staticDataService,
+            IInstantiator instantiator)
         {
             _assetProvider = assetProvider;
             _staticDataService = staticDataService;
-        }
-
-        public void SetSceneInstantiator(IInstantiator instantiator)
-        {
             _instantiator = instantiator;
         }
 
