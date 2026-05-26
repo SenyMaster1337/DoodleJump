@@ -1,6 +1,7 @@
 using Code.Core.Interfaces;
 using Code.Core.LoadingCurtains;
 using Code.Core.Signals;
+using Code.Gameplay.PlayerComponents.PlayerProviders;
 using Code.Gameplay.Score;
 using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.CoroutineRunners;
@@ -22,6 +23,11 @@ using Code.Infrastructure.Services.PlayerInput;
 using Code.Infrastructure.Services.RestartGameServices;
 using Code.Infrastructure.Services.SaveLoad;
 using Code.Infrastructure.Services.ScoreShowerServices;
+using Code.Infrastructure.Services.Setups.Ads;
+using Code.Infrastructure.Services.Setups.Camera;
+using Code.Infrastructure.Services.Setups.Player;
+using Code.Infrastructure.Services.Setups.Spawners;
+using Code.Infrastructure.Services.Setups.UI;
 using Code.Infrastructure.Services.StaticData;
 using Code.Infrastructure.States;
 using Code.Infrastructure.States.Factory;
@@ -42,6 +48,7 @@ namespace Code.Infrastructure.Installers
             BindServices();
             BindSignals();
             BindGoogleAds();
+            BindSetups();
         }
 
         private void BindCoroutine() =>
@@ -79,6 +86,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
             Container.Bind<IScoreByHeightProvider>().To<ScoreByHeightProvider>().AsSingle();
             Container.Bind<ILoadingCurtainProvider>().To<LoadingCurtainProvider>().AsSingle();
+            Container.Bind<IPlayerProvider>().To<PlayerProvider>().AsSingle();
         }
 
         private void BindFactories()
@@ -106,6 +114,15 @@ namespace Code.Infrastructure.Installers
         private void BindGoogleAds()
         {
             Container.BindInterfacesAndSelfTo<InterAd>().AsSingle();
+        }
+
+        private void BindSetups()
+        {
+            Container.Bind<IPlayerSetup>().To<PlayerSetup>().AsSingle();
+            Container.Bind<IUISetup>().To<UISetup>().AsSingle();
+            Container.Bind<ISpawnersSetup>().To<SpawnersSetup>().AsSingle();
+            Container.Bind<ICameraSetup>().To<CameraSetup>().AsSingle();
+            Container.Bind<IAdsSetup>().To<AdsSetup>().AsSingle();
         }
     }
 }

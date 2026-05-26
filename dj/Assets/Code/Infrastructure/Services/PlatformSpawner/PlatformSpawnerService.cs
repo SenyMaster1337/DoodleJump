@@ -65,10 +65,12 @@ namespace Code.Infrastructure.Services.PlatformSpawner
                 _pool[type] = new Queue<IPlatform>();
         }
 
-        public void StartSpawn(float startY)
+        public void StartSpawn()
         {
+            float startPositionY = _staticDataService.GetGameStaticData(SceneNames.Main).StartSpawnPosition.y;
+            
             _occupiedColumns.Clear();
-            _currentRowY = startY + _platformsSpawnData.StepY;
+            _currentRowY = startPositionY + _platformsSpawnData.StepY;
 
             PlaceFirstPlatform();
 
@@ -80,7 +82,7 @@ namespace Code.Infrastructure.Services.PlatformSpawner
             => PlacePlatform(PlatformType.Default,
                 _staticDataService.GetGameStaticData(SceneNames.Main).StartSpawnPosition);
 
-        public void ReturnToPool(IPlatform platform)
+        private void ReturnToPool(IPlatform platform)
         {
             platform.GameObject.SetActive(false);
             _active.Remove(platform);
