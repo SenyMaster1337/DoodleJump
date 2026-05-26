@@ -12,6 +12,7 @@ using Code.Infrastructure.SceneLoaders;
 using Code.Infrastructure.Services.BulletSpawners;
 using Code.Infrastructure.Services.CameraProviders;
 using Code.Infrastructure.Services.EnemySpawner;
+using Code.Infrastructure.Services.GameTime;
 using Code.Infrastructure.Services.GoogleAdsShowers;
 using Code.Infrastructure.Services.LoadGameLevelServices;
 using Code.Infrastructure.Services.LoseServices;
@@ -60,6 +61,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IGoogleAdsShowerService>().To<GoogleAdsShowerService>().AsSingle();
+            Container.Bind<IGameTimeService>().To<GameTimeService>().AsSingle();
         }
 
         private void BindStates()

@@ -1,6 +1,6 @@
 using Code.Infrastructure.Factory.UI;
+using Code.Infrastructure.Services.GameTime;
 using Code.Infrastructure.Services.SaveLoad;
-using UnityEngine;
 
 namespace Code.Infrastructure.Services.LoseServices
 {
@@ -8,16 +8,18 @@ namespace Code.Infrastructure.Services.LoseServices
     {
         private readonly IUIFactory _uiFactory;
         private readonly ISaveLoadService _saveLoadService;
+        private readonly IGameTimeService _gameTimeService;
 
-        public LoseService(IUIFactory uiFactory, ISaveLoadService saveLoadService)
+        public LoseService(IUIFactory uiFactory, ISaveLoadService saveLoadService, IGameTimeService gameTimeService)
         {
             _uiFactory = uiFactory;
             _saveLoadService = saveLoadService;
+            _gameTimeService = gameTimeService;
         }
 
         public void StartLoseProcess()
         {
-            Time.timeScale = 0f;
+            _gameTimeService.Pause();
             _saveLoadService.SaveProgress();
             _uiFactory.CreateRestartWindow();
         }
