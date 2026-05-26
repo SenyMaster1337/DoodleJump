@@ -4,6 +4,7 @@ using Code.Gameplay.Platforms;
 using Code.Gameplay.Score;
 using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.SceneNameConstants;
+using Code.Infrastructure.Services.LevelReset;
 using Code.Infrastructure.Services.StaticData;
 using Code.StaticData.Platform;
 using UnityEngine;
@@ -11,7 +12,7 @@ using Random = UnityEngine.Random;
 
 namespace Code.Infrastructure.Services.PlatformSpawner
 {
-    public class PlatformSpawnerService : IPlatformSpawnerService
+    public class PlatformSpawnerService : IPlatformSpawnerService, ILevelReset
     {
         private const float MinRoll = 0f;
         private const float MaxRoll = 1f;
@@ -30,7 +31,9 @@ namespace Code.Infrastructure.Services.PlatformSpawner
         private PlatformsSpawnData _platformsSpawnData;
         private List<PlatformChanceData> _chances;
         private float _currentRowY;
+
         private bool _isEmptyChanceActive;
+
         private int _currentCount;
 
         public event Action<Vector2> PlatformSpawned;
@@ -45,9 +48,17 @@ namespace Code.Infrastructure.Services.PlatformSpawner
 
         public void Init()
         {
-            _scoreByHeightProvider.ScoreByHeight.ScoreChanged -= OnActivateSpawnEmptyPlatformChance;
-            _scoreByHeightProvider.ScoreByHeight.ScoreChanged += OnActivateSpawnEmptyPlatformChance;
+            _platformsSpawnData = _staticDataService.GetGameStaticData(SceneNames.Main).PlatformsSpawnData;
+            _chances = _platformsSpawnData.PlatformChances;
 
+            foreach (PlatformType type in Enum.GetValues(typeof(PlatformType)))
+                _pool[type] = new Queue<IPlatform>();
+
+            _scoreByHeightProvider.ScoreByHeight.ScoreChanged += OnActivateSpawnEmptyPlatformChance;
+        }
+
+        public void Reset()
+        {
             _occupiedColumns.Clear();
             _active.Clear();
 
@@ -55,20 +66,16 @@ namespace Code.Infrastructure.Services.PlatformSpawner
                 queue.Clear();
 
             _currentCount = 0;
-            _currentRowY = 0;
             _isEmptyChanceActive = false;
+            _currentRowY = 0;
 
-            _platformsSpawnData = _staticDataService.GetGameStaticData(SceneNames.Main).PlatformsSpawnData;
-            _chances = _platformsSpawnData.PlatformChances;
-
-            foreach (PlatformType type in Enum.GetValues(typeof(PlatformType)))
-                _pool[type] = new Queue<IPlatform>();
+            _scoreByHeightProvider.ScoreByHeight.ScoreChanged -= OnActivateSpawnEmptyPlatformChance;
         }
 
         public void StartSpawn()
         {
             float startPositionY = _staticDataService.GetGameStaticData(SceneNames.Main).StartSpawnPosition.y;
-            
+
             _occupiedColumns.Clear();
             _currentRowY = startPositionY + _platformsSpawnData.StepY;
 

@@ -4,6 +4,7 @@ using Code.Gameplay.Enemies;
 using Code.Gameplay.Score;
 using Code.Infrastructure.Factory.Game;
 using Code.Infrastructure.SceneNameConstants;
+using Code.Infrastructure.Services.LevelReset;
 using Code.Infrastructure.Services.PlatformSpawner;
 using Code.Infrastructure.Services.StaticData;
 using Code.StaticData.Enemy;
@@ -12,7 +13,7 @@ using Random = UnityEngine.Random;
 
 namespace Code.Infrastructure.Services.EnemySpawner
 {
-    public class EnemySpawnerService : IEnemySpawnerService
+    public class EnemySpawnerService : IEnemySpawnerService, ILevelReset
     {
         private const float MinRoll = 0f;
         private const float MaxRoll = 1f;
@@ -42,20 +43,27 @@ namespace Code.Infrastructure.Services.EnemySpawner
 
         public void Init()
         {
-            _platformSpawnerService.PlatformSpawned -= OnEnemySpawned;
-            _scoreByHeightProvider.ScoreByHeight.ScoreChanged -= OnActivateSpawnProcess;
-            _scoreByHeightProvider.ScoreByHeight.ScoreChanged += OnActivateSpawnProcess;
-
-            _isActive = false;
-            _currentCount = 0;
-            _active.Clear();
-            _pool.Clear();
-
             _data = _staticDataService.GetGameStaticData(SceneNames.Main).EnemySpawnData;
             _chances = _data.EnemyChances;
 
             foreach (EnemyType type in Enum.GetValues(typeof(EnemyType)))
                 _pool[type] = new Queue<IEnemy>();
+
+            _scoreByHeightProvider.ScoreByHeight.ScoreChanged += OnActivateSpawnProcess;
+        }
+
+        public void Reset()
+        {
+            _active.Clear();
+
+            foreach (var queue in _pool.Values)
+                queue.Clear();
+            
+            _isActive = false;
+            _currentCount = 0;
+            
+            _platformSpawnerService.PlatformSpawned -= OnEnemySpawned;
+            _scoreByHeightProvider.ScoreByHeight.ScoreChanged -= OnActivateSpawnProcess;
         }
 
         private void ReturnToPool(IEnemy enemyDefault)

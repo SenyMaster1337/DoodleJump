@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using Code.Core.Interfaces;
 using Code.Gameplay.Bullets;
 using Code.Infrastructure.Factory.ProjectileFactory;
+using Code.Infrastructure.Services.LevelReset;
 using UnityEngine;
 
 namespace Code.Infrastructure.Services.BulletSpawners
 {
-    public class BulletSpawnerService : IBulletSpawnerService
+    public class BulletSpawnerService : IBulletSpawnerService, ILevelReset
     {
         private readonly IProjectileFactory _factory;
         private readonly Queue<Bullet> _pool = new();
@@ -27,7 +28,7 @@ namespace Code.Infrastructure.Services.BulletSpawners
             _active.Add(projectile);
         }
 
-        public void ClearPool()
+        public void Reset()
         {
             _pool.Clear();
             _active.Clear();
@@ -40,7 +41,7 @@ namespace Code.Infrastructure.Services.BulletSpawners
             _pool.Enqueue(bullet);
         }
 
-        private Bullet GetFromPool() 
+        private Bullet GetFromPool()
             => _pool.Count > 0 ? _pool.Dequeue() : null;
     }
 }
