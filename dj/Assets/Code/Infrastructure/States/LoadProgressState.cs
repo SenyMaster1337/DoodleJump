@@ -1,4 +1,5 @@
 using Code.Data;
+using Code.Infrastructure.SceneNameConstants;
 using Code.Infrastructure.Services.PersistentProgress;
 using Code.Infrastructure.Services.SaveLoad;
 
@@ -6,7 +7,6 @@ namespace Code.Infrastructure.States
 {
     public class LoadProgressState : IState
     {
-        private const string MainSceneName = "Main";
         private const int ZeroScore = 0;
 
         private readonly GameStateMachine _gameStateMachine;
@@ -25,7 +25,7 @@ namespace Code.Infrastructure.States
         {
             LoadProgressOrInitNew();
 
-            _gameStateMachine.Enter<LoadLevelState, string>(MainSceneName);
+            _gameStateMachine.Enter<LoadLevelState, string>(SceneNames.Main);
         }
 
         public void Exit()
